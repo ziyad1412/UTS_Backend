@@ -16,14 +16,14 @@ class PatientsController extends Controller
         # cek apakah data patients ada
         if($patients){
             $data = [
-                'message' => 'Get all Patients',
+                'message' => 'Get All Resource',
                 'data' => $patients
             ];
             # mengirim data (json) dan kode 200
             return response()->json($data, 200);
         } else {
             $data = [
-                'message' => 'Patients not found'
+                'message' => 'Data is empty'
             ];
 
             return response()->json($data, 404);
@@ -38,14 +38,14 @@ class PatientsController extends Controller
         # cek apakah data patients ada
         if($patient){
             $data = [
-                'message' => 'Get detail Patients',
+                'message' => 'Get Detail Resource',
                 'data' => $this->output([$patient])
             ];
             # mengirim data (json) dan kode 200
             return response()->json($data, 200);
         } else {
             $data = [
-                'message' => 'Patients not found'
+                'message' => 'Resource not found'
             ];
 
             return response()->json($data, 404);
@@ -71,7 +71,7 @@ class PatientsController extends Controller
         $patient = Patients::create($validatedData);
 
         $data = [
-            'message' => 'Patient is created succesfully',
+            'message' => 'Resource is added successfully',
             'data' => $patient
         ];
 
@@ -96,14 +96,14 @@ class PatientsController extends Controller
             ]);
 
             $data = [
-                'message' => 'Patient is updated',
+                'message' => 'Resource is update successfully',
                 'data' => $patient
             ];
             # mengirim data (json) dan kode 200
             return response()->json($data, 200);
         } else {
             $data = [
-                'message' => 'Patient not found'
+                'message' => 'Resource not found'
             ];
 
             return response()->json($data, 404);       
@@ -121,14 +121,14 @@ class PatientsController extends Controller
             $patient->delete();
 
             $data = [
-                'message' => 'Patient is deleted'
+                'message' => 'Resource is delete successfully'
             ];
 
             # mengembalikan data (json) dan kode 200
             return response()->json($data, 200);
         } else {
             $data = [
-                'message' => 'Patient not found'
+                'message' => 'Resource not found'
             ];
 
             return response()->json($data, 404);
@@ -142,13 +142,13 @@ class PatientsController extends Controller
         # cek apakah data patients ada
         if($patient->isEmpty()){
             $data = [
-                'message' => 'Patient not found'
+                'message' => 'Resource not found'
             ];
 
             return response()->json($data, 404);
         } else {
             $data = [
-                'message' => 'Get Patient Searched',
+                'message' => 'Get searched resource',
                 'data' => $patient
             ];
 
@@ -164,7 +164,7 @@ class PatientsController extends Controller
         $patient = Patients::where("status", "positif")->get();
 
         $output = [
-                "message" => "Get Patient Positive",
+                "message" => "Get positive resource",
                 "total" => count($patient),
                 "data" => $patient
             ];
@@ -179,7 +179,7 @@ class PatientsController extends Controller
         $patient = Patients::where("status", "sembuh")->get();
 
         $data = [
-                "message" => "Get Patient Recovered",
+                "message" => "Get recovered resource",
                 "total" => count($patient),
                 "data" => $patient
             ];
@@ -194,7 +194,7 @@ class PatientsController extends Controller
         $patient = Patients::where("status", "meninggal")->get();
 
         $data = [
-                "message" => "Get Patient Dead",
+                "message" => "Get dead resource",
                 "total" => count($patient),
                 "data" => $patient
             ];
